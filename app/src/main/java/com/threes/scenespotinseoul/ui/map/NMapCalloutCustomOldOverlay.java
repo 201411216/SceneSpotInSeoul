@@ -17,6 +17,7 @@ import java.util.Objects;
 
 /** Created by Chun on 2018-08-15. */
 public class NMapCalloutCustomOldOverlay extends NMapCalloutOverlay {
+
   private static final String LOG_TAG = "NMapCalloutOverlay";
   private static final boolean DEBUG = false;
 
@@ -38,10 +39,8 @@ public class NMapCalloutCustomOldOverlay extends NMapCalloutOverlay {
   private static final float CALLOUT_ITEM_GAP_Y = 0.0F;
   private static final float CALLOUT_TAIL_GAP_X = 6.67F;
   private static final float CALLOUT_TITLE_OFFSET_Y = -2.0F;
-
+  protected final Rect mTemp2Rect = new Rect();
   private final TextPaint mTextPaint = new TextPaint();
-  private float mOffsetX, mOffsetY;
-
   private final float mMarginX;
   private final float mPaddingX, mPaddingY, mPaddingOffset;
   private final float mMinimumWidth;
@@ -52,31 +51,17 @@ public class NMapCalloutCustomOldOverlay extends NMapCalloutOverlay {
   private final float mTitleOffsetY;
 
   private final Drawable mBackgroundDrawable;
-  protected final Rect mTemp2Rect = new Rect();
   private final Rect mRightButtonRect;
   private final String mRightButtonText;
   private final int mCalloutRightButtonWidth;
   private final int mCalloutRightButtonHeight;
-  private Drawable[] mDrawableRightButton;
   private final int mCalloutButtonCount = 1;
-
+  private final String mTailText;
+  private float mOffsetX, mOffsetY;
+  private Drawable[] mDrawableRightButton;
   private String mTitleTruncated;
   private int mWidthTitleTruncated;
-
-  private final String mTailText;
   private float mTailTextWidth;
-
-  /** Resource provider should implement this interface */
-  public interface ResourceProvider {
-
-    Drawable getCalloutBackground(NMapOverlayItem item);
-
-    String getCalloutRightButtonText(NMapOverlayItem item);
-
-    Drawable[] getCalloutRightButton(NMapOverlayItem item);
-
-    Drawable[] getCalloutRightAccessory(NMapOverlayItem item);
-  }
 
   public NMapCalloutCustomOldOverlay(
       NMapOverlay itemOverlay,
@@ -259,8 +244,6 @@ public class NMapCalloutCustomOldOverlay extends NMapCalloutOverlay {
     }
   }
 
-  /* Internal Functions */
-
   private void drawBackground(Canvas canvas) {
 
     mTemp2Rect.left = (int) (mTempRectF.left + 0.5F);
@@ -271,6 +254,8 @@ public class NMapCalloutCustomOldOverlay extends NMapCalloutOverlay {
     mBackgroundDrawable.setBounds(mTemp2Rect);
     mBackgroundDrawable.draw(canvas);
   }
+
+  /* Internal Functions */
 
   private void adjustTextBounds(NMapView mapView) {
 
@@ -377,5 +362,17 @@ public class NMapCalloutCustomOldOverlay extends NMapCalloutOverlay {
     }
 
     return null;
+  }
+
+  /** Resource provider should implement this interface */
+  public interface ResourceProvider {
+
+    Drawable getCalloutBackground(NMapOverlayItem item);
+
+    String getCalloutRightButtonText(NMapOverlayItem item);
+
+    Drawable[] getCalloutRightButton(NMapOverlayItem item);
+
+    Drawable[] getCalloutRightAccessory(NMapOverlayItem item);
   }
 }

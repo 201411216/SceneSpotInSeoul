@@ -25,7 +25,6 @@
     android:layout_margin="5dp"
     android:layout_gravity="bottom"
     android:visibility="invisible"
-    app:cardBackgroundColor="@android:color/black"
     card:cardCornerRadius="4dp"
     card:elevation="1dp"
     tools:visibility="visible">
