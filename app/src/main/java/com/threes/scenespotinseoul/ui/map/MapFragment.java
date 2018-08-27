@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -61,9 +62,10 @@ public class MapFragment extends Fragment {
   private double mylat = 0;
   private double mylon = 0;
 
-  private TextView title, tag, godetail;
+  private TextView title, tag;
+  private Button godetail;
   private ImageView image;
-  private  FrameLayout frameLayout;
+  private FrameLayout frameLayout;
   private CardView cardView;
   private Handler handler = new Handler();
 
